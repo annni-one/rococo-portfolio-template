@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dripping honey · 兔梓的个人小站</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 90 C50 90 10 60 10 35 C10 18 28 10 40 10 C47 10 50 18 50 22 C50 18 53 10 60 10 C72 10 90 18 90 35 C90 60 50 90 50 90 Z' fill='%23C98A94'/></svg>">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Great+Vibes&family=Noto+Serif+SC:wght@300;400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #FDF8F3;
+    --bg-secondary: #FAF3F0;
+    --pink-light: #F5E6E8;
+    --pink-deep: #C98A94;
+    --pink-darker: #B0707C;
+    --pearl: #FFFDF9;
+    --gold: #D4B896;
+    --gold-light: #E8D5B7;
+    --text: #5D4E4A;
+    --text-light: #9E8E8A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Serif SC', serif;
+    background: var(--bg) url('assets/bg.png') center / cover no-repeat fixed;
+    color: var(--text);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: url('assets/zodiac.png') center / contain no-repeat;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  nav, section, footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== 导航栏 ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(253, 248, 243, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--pink-light);
+  }
+
+  .logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    color: var(--pink-deep);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--pink-deep); }
+  .nav-links a.active { color: var(--pink-deep); }
+
+  /* ===== Hero 首屏 ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px 60px;
+    position: relative;
+    background: transparent;
+  }
+
+  /* 纱帘背景效果 */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 15% 50%, rgba(245, 230, 232, 0.3) 0%, transparent 40%),
+      radial-gradient(ellipse at 85% 50%, rgba(245, 230, 232, 0.25) 0%, transparent 40%),
+      radial-gradient(circle at 50% 30%, rgba(255, 253, 249, 0.5) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* 手写诗句装饰 */
+  .hero-poetry {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 18px;
+    color: var(--text-light);
+    line-height: 1.8;
+    opacity: 0.7;
+    z-index: 1;
+  }
+
+  .heart-frame {
+    position: relative;
+    width: 340px;
+    height: 320px;
+    margin: 40px 0 30px;
+    z-index: 1;
+  }
+
+  .heart-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 8px 20px rgba(201, 138, 148, 0.2));
+  }
+
+  .photo-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%);
+    width: 170px;
+    height: 160px;
+    background: #E8E0E0;
+    border-radius: 50% 50% 48% 52%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--text-light);
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .hero-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 60px;
+    color: var(--pink-deep);
+    text-align: center;
+    line-height: 1.2;
+    z-index: 1;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    color: var(--text-light);
+    margin-top: 8px;
+    letter-spacing: 3px;
+    z-index: 1;
+  }
+
+  .hero-intro {
+    max-width: 420px;
+    text-align: center;
+    margin-top: 28px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 2;
+    z-index: 1;
+    font-style: italic;
+  }
+
+  /* ===== 关于我区（信封造型）===== */
+  .about {
+    padding: 100px 20px;
+    background: transparent;
+    position: relative;
+  }
+
+  /* 角落蕾丝装饰 */
+  .corner-lace {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    opacity: 0.15;
+  }
+  .corner-lace.top-left { top: 0; left: 0; }
+  .corner-lace.top-right { top: 0; right: 0; transform: scaleX(-1); }
+  .corner-lace.bottom-left { bottom: 0; left: 0; transform: scaleY(-1); }
+  .corner-lace.bottom-right { bottom: 0; right: 0; transform: scale(-1, -1); }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-title-en {
+    font-family: 'Great Vibes', cursive;
+    font-size: 44px;
+    color: var(--pink-deep);
+    line-height: 1.2;
+  }
+
+  .section-title-cn {
+    font-size: 14px;
+    color: var(--text-light);
+    letter-spacing: 4px;
+    margin-top: 8px;
+  }
+
+  .envelope-container {
+    max-width: 560px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .envelope-svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(93, 78, 74, 0.12));
+  }
+
+  .envelope-content {
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 82%;
+    text-align: center;
+  }
+
+  .identity-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .identity-tag {
+    padding: 6px 16px;
+    border: 1px solid var(--pink-light);
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--text);
+    background: var(--pearl);
+  }
+
+  .identity-tag.highlight {
+    background: var(--pink-light);
+    color: var(--pink-darker);
+    border-color: var(--pink-deep);
+  }
+
+  .envelope-quote {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--text-light);
+    font-style: italic;
+    line-height: 1.9;
+  }
+
+  /* ===== 爱好区 ===== */
+  .hobbies {
+    padding: 0 0 100px;
+    background: var(--bg);
+    position: relative;
+  }
+
+  /* 上下蕾丝花边横带 */
+  .lace-border {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lace-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 20px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 60px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 100px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 140px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 180px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 220px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 260px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 300px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 340px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 380px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 420px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 460px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 500px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 540px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 580px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 620px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 660px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 700px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 740px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 780px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 820px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 860px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 900px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 940px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 980px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1020px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1060px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1100px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1140px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1180px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1220px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1260px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1300px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1340px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1380px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1420px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1460px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1500px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1540px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1580px 25px, transparent 8px, #F5E6E8 9px, transparent 10px),
+      radial-gradient(circle at 1620px 25px, transparent 8px, #F5E6E8 9px, transparent 10px);
+    background-size: 40px 50px;
+    background-repeat: repeat-x;
+  }
+
+  .hobbies-inner {
+    padding: 80px 20px;
+  }
+
+  /* 标题装饰：双心玫瑰蝴蝶结 */
+  .title-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 50px;
+  }
+
+  .deco-heart {
+    width: 60px;
+    height: 55px;
+    position: relative;
+  }
+
+  .deco-line {
+    flex: 1;
+    max-width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  }
+
+  .hobby-cards {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .hobby-card {
+    background: var(--pearl);
+    border: 1px solid var(--pink-light);
+    border-radius: 4px;
+    padding: 30px 24px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .hobby-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(201, 138, 148, 0.15);
+  }
+
+  .hobby-card::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 1px dashed var(--pink-light);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  .hobby-img-placeholder {
+    width: 100px;
+    height: 80px;
+    margin: 0 auto 16px;
+    background: #E8E0E0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-size: 12px;
+  }
+
+  .hobby-title {
+    font-size: 17px;
+    color: var(--pink-deep);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .hobby-title-en {
+    font-family: 'Great Vibes', cursive;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .hobby-desc {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.9;
+    margin-bottom: 14px;
+  }
+
+  .hobby-quote {
+    font-size: 12px;
+    color: var(--text-light);
+    font-style: italic;
+    line-height: 1.8;
+    padding-top: 14px;
+    border-top: 1px dashed var(--pink-light);
+  }
+
+  .hobby-skills {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .skill-chip {
+    font-size: 11px;
+    padding: 3px 10px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    color: var(--text-light);
+  }
+
+  /* ===== 联系我区 ===== */
+  .contact {
+    padding: 100px 20px;
+    background: transparent;
+    position: relative;
+  }
+
+  /* 蝴蝶结暗纹背景 */
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 10% 20%, rgba(245, 230, 232, 0.3) 0%, transparent 8%),
+                      radial-gradient(circle at 30% 60%, rgba(245, 230, 232, 0.25) 0%, transparent 8%),
+                      radial-gradient(circle at 50% 30%, rgba(245, 230, 232, 0.3) 0%, transparent 8%),
+                      radial-gradient(circle at 70% 70%, rgba(245, 230, 232, 0.25) 0%, transparent 8%),
+                      radial-gradient(circle at 90% 40%, rgba(245, 230, 232, 0.3) 0%, transparent 8%);
+    background-size: 150px 150px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .contact-envelope {
+    max-width: 440px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-envelope-svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(93, 78, 74, 0.12));
+  }
+
+  .avatar-placeholder {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 140px;
+    background: #E8E0E0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--text-light);
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .contact-info {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    background: var(--pearl);
+    border: 1px solid var(--pink-light);
+    border-radius: 4px;
+    padding: 20px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .contact-row + .contact-row {
+    border-top: 1px dashed var(--pink-light);
+  }
+
+  .contact-label {
+    color: var(--text-light);
+    font-size: 12px;
+    min-width: 60px;
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    padding: 40px 20px;
+    text-align: center;
+    background: transparent;
+    border-top: 1px solid var(--pink-light);
+  }
+
+  .footer-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 26px;
+    color: var(--pink-deep);
+  }
+
+  .footer-sub {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 8px;
+    letter-spacing: 2px;
+  }
+
+  /* ===== 响应式 ===== */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 11px; }
+
+    .hero-title { font-size: 42px; }
+    .heart-frame { width: 260px; height: 240px; }
+    .photo-placeholder { width: 130px; height: 120px; }
+
+    .hobby-cards {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+
+    .section-title-en { font-size: 34px; }
+  }
+
+  /* ===== 滚动揭示动画 ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 导航栏 ===== -->
+<nav>
+  <a href="#hero" class="logo">Dripping honey</a>
+  <ul class="nav-links">
+    <li><a href="#hero" class="active">首页</a></li>
+    <li><a href="#about">关于</a></li>
+    <li><a href="#hobbies">爱好</a></li>
+    <li><a href="#contact">联系</a></li>
+  </ul>
+</nav>
+
+<!-- ===== Hero 首屏 ===== -->
+<section class="hero" id="hero">
+  <div class="hero-poetry">
+    The sky is not the limit, but the beginning.<br>
+    The heart knows the way, follow it.
+  </div>
+
+  <div class="heart-frame">
+    <svg class="heart-svg" viewBox="0 0 340 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="laceDots" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
+          <circle cx="7.5" cy="7.5" r="2" fill="none" stroke="#D4B896" stroke-width="0.5" opacity="0.5"/>
+        </pattern>
+      </defs>
+
+      <!-- 心形蕾丝外框 -->
+      <path d="M170 290 C170 290 40 200 40 115 C40 65 80 35 125 35 C150 35 170 55 170 65 C170 55 190 35 215 35 C260 35 300 65 300 115 C300 200 170 290 170 290 Z"
+            fill="none" stroke="#FFF" stroke-width="28" opacity="0.95"/>
+      <path d="M170 290 C170 290 40 200 40 115 C40 65 80 35 125 35 C150 35 170 55 170 65 C170 55 190 35 215 35 C260 35 300 65 300 115 C300 200 170 290 170 290 Z"
+            fill="none" stroke="#F5E6E8" stroke-width="1" stroke-dasharray="3 2"/>
+
+      <!-- 顶部大蝴蝶结 -->
+      <g transform="translate(170, 40)">
+        <!-- 左蝴蝶结瓣 -->
+        <path d="M0 0 C-25 -18 -50 -12 -55 0 C-50 12 -25 18 0 0 Z" fill="#FFF" stroke="#F5E6E8" stroke-width="1"/>
+        <!-- 右蝴蝶结瓣 -->
+        <path d="M0 0 C25 -18 50 -12 55 0 C50 12 25 18 0 0 Z" fill="#FFF" stroke="#F5E6E8" stroke-width="1"/>
+        <!-- 中间结 -->
+        <ellipse cx="0" cy="0" rx="8" ry="10" fill="#F5E6E8"/>
+        <!-- 垂带 -->
+        <path d="M-8 8 Q-12 25 -8 35" fill="none" stroke="#F5E6E8" stroke-width="3"/>
+        <path d="M8 8 Q12 25 8 35" fill="none" stroke="#F5E6E8" stroke-width="3"/>
+      </g>
+
+      <!-- 珍珠点缀 -->
+      <circle cx="55" cy="130" r="5" fill="#FFF" stroke="#D4B896" stroke-width="0.5"/>
+      <circle cx="285" cy="130" r="5" fill="#FFF" stroke="#D4B896" stroke-width="0.5"/>
+      <circle cx="75" cy="220" r="4" fill="#FFF" stroke="#D4B896" stroke-width="0.5"/>
+      <circle cx="265" cy="220" r="4" fill="#FFF" stroke="#D4B896" stroke-width="0.5"/>
+      <circle cx="170" cy="270" r="5" fill="#FFF" stroke="#D4B896" stroke-width="0.5"/>
+    </svg>
+    <div class="photo-placeholder">
+      <img src="assets/rabbit.png" alt="兔子" style="width:100%; height:100%; object-fit:cover; border-radius:50% 50% 48% 52%;">
+    </div>
+  </div>
+
+  <h1 class="hero-title">Dripping honey</h1>
+  <p class="hero-subtitle">兔梓的个人小站</p>
+  <p class="hero-intro">
+    我自宇宙万物的一切美好中诞生，<br>
+    走过漫长的岁月，<br>
+    只为在这个节点与你相遇，展开故事。
+  </p>
+</section>
+
+<!-- ===== 关于我区（信封造型）===== -->
+<section class="about" id="about">
+  <!-- 角落蕾丝装饰 -->
+  <svg class="corner-lace top-left" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0 Q30 0 30 30 Q30 60 0 60" fill="none" stroke="#C98A94" stroke-width="2"/>
+    <circle cx="15" cy="15" r="8" fill="none" stroke="#C98A94" stroke-width="1"/>
+  </svg>
+  <svg class="corner-lace top-right" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0 Q30 0 30 30 Q30 60 0 60" fill="none" stroke="#C98A94" stroke-width="2"/>
+    <circle cx="15" cy="15" r="8" fill="none" stroke="#C98A94" stroke-width="1"/>
+  </svg>
+
+  <div class="section-title fade-in">
+    <div class="section-title-en">About Me</div>
+    <div class="section-title-cn">关 于 我</div>
+  </div>
+
+  <div class="envelope-container fade-in">
+    <img src="assets/envelope_flower.png" alt="花卉刺绣蕾丝信封" style="width:100%; max-width:480px; display:block; margin:0 auto; filter: drop-shadow(0 10px 30px rgba(93, 78, 74, 0.15));">
+
+    <div class="envelope-content" style="position: relative; margin-top: -160px; margin-bottom: 60px;">
+      <div class="identity-tags">
+        <span class="identity-tag highlight">ENTJ</span>
+        <span class="identity-tag">天蝎座</span>
+        <span class="identity-tag">双</span>
+      </div>
+      <div class="identity-tags" style="margin-top: 10px;">
+        <span class="identity-tag">在职道士</span>
+        <span class="identity-tag">现代萨满</span>
+        <span class="identity-tag">萌豚阿宅</span>
+      </div>
+      <p class="envelope-quote">
+        其实我更喜欢用女性叙述，<br>
+        不如把我当作"魔法少女✨"
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 爱好区 ===== -->
+<section class="hobbies" id="hobbies">
+  <!-- 顶部蕾丝花边横带 -->
+  <div class="lace-border"></div>
+
+  <div class="hobbies-inner">
+    <div class="section-title fade-in">
+      <div class="section-title-en">Hobbies & Skills</div>
+      <div class="section-title-cn">爱 好 与 擅 长</div>
+    </div>
+
+    <!-- 标题装饰：双心玫瑰蝴蝶结 -->
+    <div class="title-decoration fade-in">
+      <svg class="deco-heart" viewBox="0 0 60 55" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 50 C30 50 8 35 8 20 C8 10 18 5 25 5 C28 5 30 10 30 12 C30 10 32 5 35 5 C42 5 52 10 52 20 C52 35 30 50 30 50 Z"
+              fill="none" stroke="#F5E6E8" stroke-width="2"/>
+      </svg>
+      <div class="deco-line"></div>
+      <div style="text-align:center;">
+        <div style="font-family:'Great Vibes',cursive; font-size:28px; color:var(--pink-deep);">Romantic</div>
+      </div>
+      <div class="deco-line"></div>
+      <svg class="deco-heart" viewBox="0 0 60 55" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 50 C30 50 8 35 8 20 C8 10 18 5 25 5 C28 5 30 10 30 12 C30 10 32 5 35 5 C42 5 52 10 52 20 C52 35 30 50 30 50 Z"
+              fill="none" stroke="#F5E6E8" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <div class="hobby-cards fade-in">
+      <!-- 宗教哲学 -->
+      <div class="hobby-card">
+        <div class="hobby-img-placeholder">
+          <img src="assets/card_religion.png" alt="禅意兔子" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
+        </div>
+        <div class="hobby-title">宗教哲学</div>
+        <div class="hobby-title-en">Religion & Philosophy</div>
+        <p class="hobby-desc">
+          道教 / 印度教 / 萨满…
+        </p>
+        <p class="hobby-quote">
+          "我喜欢了解宗教，因为可以透过宝相庄严的神明，能看见宇宙最本真的模样。"
+        </p>
+        <div class="hobby-skills">
+          <span class="skill-chip">通灵传讯</span>
+          <span class="skill-chip">塔罗占卜</span>
+          <span class="skill-chip">萨满疗愈</span>
+          <span class="skill-chip">法事科仪</span>
+          <span class="skill-chip">符箓</span>
+        </div>
+      </div>
+
+      <!-- 历史研究 -->
+      <div class="hobby-card">
+        <div class="hobby-img-placeholder">
+          <img src="assets/card_history.jpg" alt="相握的手" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
+        </div>
+        <div class="hobby-title">历史研究</div>
+        <div class="hobby-title-en">History</div>
+        <p class="hobby-desc">
+          中国史 / 近代史 / 苏联美学
+        </p>
+        <p class="hobby-quote">
+          "不论是把酒临风的东方朝代，还是群星闪耀的文艺复兴，亦或是被战火点燃的近代东欧与西欧，我都想在这场名为'历史'的漫长旅途里，偷偷翻找你我曾相遇的痕迹。"
+        </p>
+      </div>
+
+      <!-- 游戏 -->
+      <div class="hobby-card">
+        <div class="hobby-img-placeholder">
+          <img src="assets/card_game.jpg" alt="宝可梦" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
+        </div>
+        <div class="hobby-title">游戏</div>
+        <div class="hobby-title-en">Gaming</div>
+        <p class="hobby-desc">
+          英雄联盟 / 永劫无间 / 宝可梦 / 碧蓝航线 / 魂游系列
+        </p>
+        <p class="hobby-quote">
+          "哪怕看遍游戏里宏大的英雄叙事，最贪恋的，依然是与你并肩作战的每一刻。"
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部蕾丝花边横带 -->
+  <div class="lace-border" style="transform: scaleY(-1);"></div>
+</section>
+
+<!-- ===== 联系我区 ===== -->
+<section class="contact" id="contact">
+  <div class="section-title fade-in">
+    <div class="section-title-en">Dear Visitor</div>
+    <div class="section-title-cn">联 系 我 吧</div>
+  </div>
+
+  <div class="contact-envelope fade-in">
+    <img src="assets/envelope_pearl.png" alt="珍珠V形蕾丝信封" style="width:100%; max-width:440px; display:block; margin:0 auto; filter: drop-shadow(0 10px 30px rgba(93, 78, 74, 0.15));">
+
+    <div class="contact-info" style="margin-top: -40px; position: relative; z-index: 2;">
+      <div class="contact-row">
+        <span class="contact-label">邮箱</span>
+        <span>3278064120@qq.com</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">微信</span>
+        <span>Novo14zz</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">小红书</span>
+        <span>@兔子肉Zizi</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">地址</span>
+        <span>宇宙某处 · 与你相遇的节点</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="footer-text">Dripping honey</div>
+  <div class="footer-sub">兔梓 · 窝不掉兔毛 · 2026</div>
+</footer>
+
+<script>
+  // 滚动揭示动画
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // 导航栏高亮
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // 平滑滚动
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+<!-- 背景音乐 -->
+<audio id="bgm" src="assets/bgm.mp3" loop></audio>
+<script>
+  // 第一次点击网页时自动播放音乐
+  let bgmPlayed = false;
+  document.addEventListener('click', function() {
+    if (!bgmPlayed) {
+      const bgm = document.getElementById('bgm');
+      bgm.play().then(() => {
+        bgmPlayed = true;
+        console.log('背景音乐开始播放');
+      }).catch((e) => {
+        console.log('自动播放失败，需要用户再次点击', e);
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

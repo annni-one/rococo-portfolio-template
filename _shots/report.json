@@ -1,0 +1,265 @@
+{
+  "src": "D:\\ai产品项目内容\\个人网页介绍\\粉色复古个人介绍\\兔梓的个人小站.html",
+  "url": "file:///D:/ai%E4%BA%A7%E5%93%81%E9%A1%B9%E7%9B%AE%E5%86%85%E5%AE%B9/%E4%B8%AA%E4%BA%BA%E7%BD%91%E9%A1%B5%E4%BB%8B%E7%BB%8D/%E7%B2%89%E8%89%B2%E5%A4%8D%E5%8F%A4%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D/%E5%85%94%E6%A2%93%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%B0%8F%E7%AB%99.html",
+  "outdir": "D:\\ai产品项目内容\\个人网页介绍\\粉色复古个人介绍\\_shots",
+  "include": [
+    "lint",
+    "screenshots",
+    "structure"
+  ],
+  "shots": {
+    "desktop": {
+      "screenshot": "D:\\ai产品项目内容\\个人网页介绍\\粉色复古个人介绍\\_shots\\兔梓的个人小站_desktop.jpg",
+      "screenshotBytes": 124992,
+      "truncated": false,
+      "structure": {
+        "title": "Dripping honey · 兔梓的个人小站",
+        "firstH1": "Dripping honey",
+        "viewport": {
+          "w": 1414,
+          "h": 760
+        },
+        "fullpage": {
+          "w": 1414,
+          "h": 3805
+        },
+        "counts": {
+          "section": 4,
+          "h1": 1,
+          "h2": 0,
+          "img": 6,
+          "canvas": 0,
+          "svg": 5,
+          "links": 5,
+          "buttons": 0
+        }
+      },
+      "consoleErrors": [],
+      "consoleWarnings": [],
+      "horizontalOverflow": [],
+      "resourceErrors": [
+        {
+          "url": "file:///D:/ai%E4%BA%A7%E5%93%81%E9%A1%B9%E7%9B%AE%E5%86%85%E5%AE%B9/%E4%B8%AA%E4%BA%BA%E7%BD%91%E9%A1%B5%E4%BB%8B%E7%BB%8D/%E7%B2%89%E8%89%B2%E5%A4%8D%E5%8F%A4%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D/asse",
+          "resourceType": "Media",
+          "status": null,
+          "reason": "network_error"
+        }
+      ],
+      "emojiUsageWarning": [
+        {
+          "tag": "p",
+          "chars": "✨",
+          "contextText": "不如把我当作\"魔法少女✨\""
+        }
+      ],
+      "emojiUsageHint": "warning · 含义：页面正文里检出 emoji 字符（U+1F300–U+1FAFF 或 U+2600–U+27BF 平面）。SKILL.md 视觉设计段明确禁用 emoji——不作图标、不作装饰、不放进数据。 | 修法：换成内联 SVG 图标（<svg viewBox=\"0 0 24 24\">）建立风格连贯的图标语言。 | 豁免：(1) **用户品牌资产明确包含 emoji**（罕见，但如即时通讯、社交媒体主题的产物合理）；(2) 主题本身就是关于 emoji 的（emoji 历史 / 表情包研究 / Unicode 演进）；(3) 引用某条真实文本原文（如推文截图的文字版），emoji 是内容而非装饰——保留原文可接受，但仍应权衡；(4) 装饰性 dingbat（如 U+2713 勾选符 ✓、U+2192 箭头 →、U+2605 星 ★）落入 U+2600–U+27BF 平面被误报的，如确认是符号非 emoji 可忽略。",
+      "reportSource": "cdp"
+    }
+  },
+  "engine": "chrome_cli",
+  "chromiumExec": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+  "engineDegraded": true,
+  "engineDegradedReason": "playwright 未装",
+  "publishBrokenAssets": [
+    {
+      "file": "assets\\envelope.png",
+      "reason": "unreferenced-file",
+      "severity": "warning",
+      "loadedAtRuntime": false,
+      "onDisk": true
+    },
+    {
+      "file": "assets\\envelope_transparent.png",
+      "reason": "unreferenced-file",
+      "severity": "warning",
+      "loadedAtRuntime": false,
+      "onDisk": true
+    },
+    {
+      "file": "assets\\magicbook.png",
+      "reason": "unreferenced-file",
+      "severity": "warning",
+      "loadedAtRuntime": false,
+      "onDisk": true
+    },
+    {
+      "file": "assets\\tarot.png",
+      "reason": "unreferenced-file",
+      "severity": "warning",
+      "loadedAtRuntime": false,
+      "onDisk": true
+    },
+    {
+      "file": "assets\\witch.png",
+      "reason": "unreferenced-file",
+      "severity": "warning",
+      "loadedAtRuntime": false,
+      "onDisk": true
+    }
+  ],
+  "publishBrokenAssetsHint": "含义：发布链路靠静态扫描 HTML 源码决定上传哪些图片文件，**只认 `src` 属性和 CSS `url()` 两个位置**（线上实测）。写在别处的路径不会被上传，发布后 404 裂图。本地打开和自检截图都看不出来——文件真实存在，浏览器照样加载。 | severity=error 的逐条改，改法都是同一个：把路径挪到 `<img src=\"assets/x.png\">` 或 CSS `url('assets/x.png')`。reason=js-literal 路径写在 JS 字符串里（`const g=['assets/x.png']` 这种常量数组也算，照样裂）；reason=js-concat 路径由 JS 拼接（`'assets/img'+i+'.png'`）；reason=non-src-attr 路径写在 `data-src`、`srcset`、`poster` 等非 `src` 属性上——**这类即便静态写在 HTML 属性里也会裂**，懒加载写法要在 `src` 上放真实路径。 | severity=warning（reason=unreferenced-file）是提醒不是错误：`assets/` 里有这个文件，但源码和运行时都没引用到它。可能是没用上的多余素材（删掉即可），也可能是路径拼接且当前视口没渲染到的图（那就是会裂的，按 error 处理）。**这一条只在本地电脑（macOS / Windows）检测**——云电脑图片走 `lark-cli drive +html-image-upload`，HTML 引用外链、`assets/` 里的原图本就该保留且不被引用，在那儿报是纯误报，所以直接不报；**别因为这条去删云电脑上的原图**。自行判断，别的规则不受它影响。",
+  "elapsedSec": 5.4,
+  "schemaVersion": 2,
+  "status": "fail",
+  "engineInfo": {
+    "name": "chrome_cli",
+    "degraded": true,
+    "degradedReasons": [
+      "playwright 未装"
+    ]
+  },
+  "input": {
+    "original": "D:\\ai产品项目内容\\个人网页介绍\\粉色复古个人介绍\\兔梓的个人小站.html",
+    "resolvedPath": "D:\\ai产品项目内容\\个人网页介绍\\粉色复古个人介绍\\兔梓的个人小站.html",
+    "baseUrl": "file:///D:/ai%E4%BA%A7%E5%93%81%E9%A1%B9%E7%9B%AE%E5%86%85%E5%AE%B9/%E4%B8%AA%E4%BA%BA%E7%BD%91%E9%A1%B5%E4%BB%8B%E7%BB%8D/%E7%B2%89%E8%89%B2%E5%A4%8D%E5%8F%A4%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D/%E5%85%94%E6%A2%93%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%B0%8F%E7%AB%99.html",
+    "protocol": "file",
+    "cwd": "D:\\ai产品项目内容\\个人网页介绍\\粉色复古个人介绍",
+    "mediaMode": {
+      "reducedMotion": true
+    }
+  },
+  "artifacts": {
+    "screenshots": [
+      {
+        "viewport": "desktop",
+        "path": "D:\\ai产品项目内容\\个人网页介绍\\粉色复古个人介绍\\_shots\\兔梓的个人小站_desktop.jpg",
+        "size": 124992,
+        "visualCoverage": {
+          "complete": true,
+          "reason": null
+        }
+      }
+    ]
+  },
+  "summary": {
+    "blocker": 0,
+    "error": 6,
+    "warning": 1,
+    "info": 0
+  },
+  "findings": [
+    {
+      "ruleId": "resourceErrors",
+      "severity": "error",
+      "kind": "network",
+      "viewport": "desktop",
+      "selector": null,
+      "evidence": {
+        "url": "file:///D:/ai%E4%BA%A7%E5%93%81%E9%A1%B9%E7%9B%AE%E5%86%85%E5%AE%B9/%E4%B8%AA%E4%BA%BA%E7%BD%91%E9%A1%B5%E4%BB%8B%E7%BB%8D/%E7%B2%89%E8%89%B2%E5%A4%8D%E5%8F%A4%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D/asse",
+        "resourceType": "Media",
+        "status": null,
+        "reason": "network_error"
+      },
+      "dedupeKey": "resourceErrors|desktop||0"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "desktop",
+      "selector": "p",
+      "evidence": {
+        "tag": "p",
+        "chars": "✨",
+        "contextText": "不如把我当作\"魔法少女✨\""
+      },
+      "dedupeKey": "emojiUsageWarning|desktop|p|0"
+    },
+    {
+      "ruleId": "publishBrokenAssets",
+      "severity": "error",
+      "kind": "publish",
+      "viewport": null,
+      "selector": null,
+      "evidence": {
+        "file": "assets\\envelope.png",
+        "reason": "unreferenced-file",
+        "severity": "warning",
+        "loadedAtRuntime": false,
+        "onDisk": true
+      },
+      "dedupeKey": "publishBrokenAssets|top||0"
+    },
+    {
+      "ruleId": "publishBrokenAssets",
+      "severity": "error",
+      "kind": "publish",
+      "viewport": null,
+      "selector": null,
+      "evidence": {
+        "file": "assets\\envelope_transparent.png",
+        "reason": "unreferenced-file",
+        "severity": "warning",
+        "loadedAtRuntime": false,
+        "onDisk": true
+      },
+      "dedupeKey": "publishBrokenAssets|top||1"
+    },
+    {
+      "ruleId": "publishBrokenAssets",
+      "severity": "error",
+      "kind": "publish",
+      "viewport": null,
+      "selector": null,
+      "evidence": {
+        "file": "assets\\magicbook.png",
+        "reason": "unreferenced-file",
+        "severity": "warning",
+        "loadedAtRuntime": false,
+        "onDisk": true
+      },
+      "dedupeKey": "publishBrokenAssets|top||2"
+    },
+    {
+      "ruleId": "publishBrokenAssets",
+      "severity": "error",
+      "kind": "publish",
+      "viewport": null,
+      "selector": null,
+      "evidence": {
+        "file": "assets\\tarot.png",
+        "reason": "unreferenced-file",
+        "severity": "warning",
+        "loadedAtRuntime": false,
+        "onDisk": true
+      },
+      "dedupeKey": "publishBrokenAssets|top||3"
+    },
+    {
+      "ruleId": "publishBrokenAssets",
+      "severity": "error",
+      "kind": "publish",
+      "viewport": null,
+      "selector": null,
+      "evidence": {
+        "file": "assets\\witch.png",
+        "reason": "unreferenced-file",
+        "severity": "warning",
+        "loadedAtRuntime": false,
+        "onDisk": true
+      },
+      "dedupeKey": "publishBrokenAssets|top||4"
+    }
+  ],
+  "prioritizedActions": [
+    {
+      "ruleId": "resourceErrors",
+      "severity": "error",
+      "viewport": "desktop",
+      "selector": null
+    },
+    {
+      "ruleId": "publishBrokenAssets",
+      "severity": "error",
+      "viewport": null,
+      "selector": null
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "viewport": "desktop",
+      "selector": "p"
+    }
+  ],
+  "reportPath": "D:\\ai产品项目内容\\个人网页介绍\\粉色复古个人介绍\\_shots\\report.json"
+}
